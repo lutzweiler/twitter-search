@@ -19,7 +19,9 @@ class TwitterRequest:
         self.build_query()
     
     def build_query(self):
-        query = " OR ".join(self.properties.search_terms)
+        query = "("
+        query += " OR ".join(self.properties.search_terms)
+        query += ")"
         query += " lang:" + self.properties.language_identifier
         self.query = query
 
