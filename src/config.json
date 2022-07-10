@@ -1,0 +1,15 @@
+{
+    "bearer_token": "insert bearer token here",
+    "search_terms": [
+        "phishing",
+        "phishen",
+        "gephisht"
+    ],
+    "max_results": 100,
+    "language_identifier": "de",
+    "request_delay": 2,
+    "export_csv": true,
+    "csv_path": "tweets.csv",
+    "send_email": false,
+    "email_recipient": "adress@provider.de"
+}
