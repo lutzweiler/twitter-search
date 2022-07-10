@@ -29,3 +29,9 @@ class Tweet:
         s += "\ncontent:"
         s += "\n" + self.text
         return s
+
+    def __iter__(self):
+        for (key, val) in self.__dict__.items():
+            if key == "text":
+                val = val.replace("\n", "\\n")
+            yield val
