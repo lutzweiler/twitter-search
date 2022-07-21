@@ -9,7 +9,12 @@
     "language_identifier": "de",
     "request_delay": 2,
     "export_csv": true,
-    "csv_path": "tweets.csv",
-    "send_email": false,
-    "email_recipient": "adress@provider.de"
+    "csv_path": "../data/tweets.csv",
+    "send_email": true,
+    "email_recipient": "address@provider.com",
+    "email_sender": "address@provider.com",
+    "smtp_server": "mail.provider.com",
+    "email_server_port": 25,
+    "email_password": "",
+    "email_authenticate": false
 }

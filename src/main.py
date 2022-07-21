@@ -3,6 +3,7 @@ import csv
 import jsonpickle
 import time
 import configuration
+import mail
 import priority
 import request
 import tweet
@@ -32,12 +33,20 @@ priority.calculate_priorities()
 priority.sort_by_priority()
 tweets = priority.get_tweet_list()
 
-for tweet in tweets:
-    print(tweet)
-    print("-----------")
+#for tweet in tweets:
+#    print(tweet)
+#    print("-----------")
 
-if config.export_csv:
+if config.export_csv or config.send_email:
+    print("writing results to", config.csv_path)
     with open(config.csv_path, 'w') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)
         for tweet in tweets:
             writer.writerow(tweet)
+
+if config.send_email:
+    properties = config.get_email_properties()
+    print("sending results to", properties.recipient, "via", properties.smtp_server)
+    text = "search terms: {}\nnumber of results: {}".format(config.search_terms, len(tweets))
+    subject = "Twitter search results"
+    mail.send_email(properties, subject, text, config.csv_path)
