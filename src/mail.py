@@ -6,6 +6,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.utils import formatdate
 
+# this class contains the configuration for accessing the mail server
 class EMailProperties:
     def __init__(self):
         self.authenticate = None
@@ -15,6 +16,9 @@ class EMailProperties:
         self.recipient = None
         self.password = None
 
+# sends an email via smtp with an attachment
+# this is tested to work with the kit smarthost server
+# using a different host might require small adjustments
 def send_email(properties, subject, text, attachment_path):
     msg = MIMEMultipart()
     msg["From"] = properties.sender

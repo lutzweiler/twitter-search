@@ -2,8 +2,10 @@ import json
 import mail
 import request
 
+# path where we expect the config file to be, relative to main.py
 CONFIG_PATH = "config.json"
 
+# this class contains the configuration data for the application
 class Configuration:
     def __init__(self, bearer_token, search_terms, max_results, language_identifier,
         request_delay, export_csv, csv_path, send_email, email_recipient, email_sender,
@@ -23,6 +25,8 @@ class Configuration:
         self.email_password = email_password
         self.email_authenticate = email_authenticate
 
+    # creates a Configuration object from a configuration file
+    # this does not test whether all relevant fields exist and are set
     @staticmethod
     def load_config_file():
         with open(CONFIG_PATH, 'r') as f:
@@ -31,6 +35,8 @@ class Configuration:
         c = Configuration(**j)
         return c
 
+    # return the relevant settings for accessing the twitter api and
+    # making search requests
     def get_request_properties(self):
         properties = request.RequestProperties()
         properties.bearer_token = self.bearer_token
@@ -40,6 +46,7 @@ class Configuration:
         properties.request_delay = self.request_delay
         return properties
 
+    # return the relevant settings for sending email
     def get_email_properties(self):
         properties = mail.EMailProperties()
         properties.recipient = self.email_recipient

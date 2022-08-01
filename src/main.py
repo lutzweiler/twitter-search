@@ -8,25 +8,16 @@ import priority
 import request
 import tweet
 
+# load the configuration from a file
 config = configuration.Configuration.load_config_file()
 properties = config.get_request_properties()
 
+# search twitter for tweets according to configuration
 request = request.TwitterRequest(properties)
 request.execute()
 result = request.get_result()
 
-#Storing the tweets in a file and then loading them again does not make much sense now,
-#but will be useful to compare different priority functions on the same data set
-#
-## serialize
-#with open('../data/query_result.json', 'w') as f:
-#    s = jsonpickle.encode(result)
-#    f.write(s)
-# deserialize
-#with open('../data/query_result.json', 'r') as f:
-#    s = f.read()
-#    tweets = jsonpickle.decode(s)
-
+# assign a priority value to each tweet and sort them by priority
 priority_function = priority.WeightedPriorityFunction
 priority = priority.PriorityCalculator(result, priority_function)
 priority.calculate_priorities()
@@ -37,6 +28,7 @@ tweets = priority.get_tweet_list()
 #    print(tweet)
 #    print("-----------")
 
+# write the result to a csv file
 if config.export_csv or config.send_email:
     print("writing results to", config.csv_path)
     with open(config.csv_path, 'w') as f:
@@ -44,6 +36,7 @@ if config.export_csv or config.send_email:
         for tweet in tweets:
             writer.writerow(tweet)
 
+# send the csv file per email
 if config.send_email:
     properties = config.get_email_properties()
     print("sending results to", properties.recipient, "via", properties.smtp_server)

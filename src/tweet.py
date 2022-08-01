@@ -1,3 +1,4 @@
+# this class contains data, metadata and metrics for a single tweet
 class Tweet:
     def __init__(self):
         self.id = None
@@ -13,6 +14,7 @@ class Tweet:
         self.num_quotes = None
         self.priority = None
 
+    # for pretty printing
     def __str__(self):
         s = ""
         s +=   "id:         " + str(self.id)
@@ -30,6 +32,8 @@ class Tweet:
         s += "\n" + self.text
         return s
 
+    # make it possible to iterate over the fields of the object
+    # this makes csv export easy
     def __iter__(self):
         for (key, val) in self.__dict__.items():
             if key == "text":

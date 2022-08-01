@@ -2,6 +2,7 @@ import time
 import tweepy
 import tweet
 
+# this class contains the settings for making requests using the twitter api
 class RequestProperties:
     def __init__(self):
         self.bearer_token = None
@@ -10,6 +11,9 @@ class RequestProperties:
         self.language_identifier = "de"
         self.request_delay = 2 #number of seconds to wait between request pages
 
+# this class makes search requests to twitter using the search_recent endpoint
+# the twiter response comes in multiple pages. we aggregate all responses into
+# a single list and convert the json data to tweet objects
 class TwitterRequest:
     def __init__(self, properties):
         self.properties = properties
@@ -18,6 +22,7 @@ class TwitterRequest:
         self.tweepy_client = tweepy.Client(self.properties.bearer_token)
         self.build_query()
     
+    # combine all search terms from the configuration into a single query
     def build_query(self):
         query = "("
         query += " OR ".join(self.properties.search_terms)
@@ -25,6 +30,7 @@ class TwitterRequest:
         query += " lang:" + self.properties.language_identifier
         self.query = query
 
+    # makes requests to the twitter api and converts the result
     def execute(self):
         print("starting request with query:", self.query)
         tweets_per_page = 100
@@ -40,12 +46,14 @@ class TwitterRequest:
                     return user
             return None
 
+        # iterate over (possibly) multiple pages of results
         while tweet_count < self.properties.max_results:
             num_tweets = min(tweets_per_page, self.properties.max_results - tweet_count)
             if num_tweets < 10: #the API requires at least ten tweets
                 num_tweets = 10
 
             print("-loading", num_tweets, "tweets")
+            # make the request
             response = self.tweepy_client.search_recent_tweets(
                 self.query,
                 max_results = num_tweets,
@@ -59,6 +67,7 @@ class TwitterRequest:
                 print("-no more results found")
                 break
 
+            # if there is no error, generate tweet objects from the result
             if errors == []:
                 for t in data:
                     new_tweet = tweet.Tweet()
