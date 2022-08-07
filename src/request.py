@@ -10,6 +10,7 @@ class RequestProperties:
         self.search_terms = None #List of search terms, joined with OR
         self.language_identifier = "de"
         self.request_delay = 2 #number of seconds to wait between request pages
+        self.time_cutoff = None
 
 # this class makes search requests to twitter using the search_recent endpoint
 # the twiter response comes in multiple pages. we aggregate all responses into
@@ -67,9 +68,15 @@ class TwitterRequest:
                 print("-no more results found")
                 break
 
+
             # if there is no error, generate tweet objects from the result
             if errors == []:
                 for t in data:
+                    # end request if tweets are too old
+                    if self.properties.time_cutoff != None:
+                        if t.created_at <= self.properties.time_cutoff:
+                            break
+
                     new_tweet = tweet.Tweet()
                     user = find_user(includes, t.author_id)
                     new_tweet.id = t.id
@@ -83,6 +90,7 @@ class TwitterRequest:
                     new_tweet.num_retweets = t.public_metrics['retweet_count']
                     new_tweet.num_responses = t.public_metrics['reply_count']
                     new_tweet.num_quotes = t.public_metrics['quote_count']
+                    new_tweet.done = False
                     self.result.append(new_tweet)
             else: 
                 print("an error has occured")

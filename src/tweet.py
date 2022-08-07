@@ -13,6 +13,23 @@ class Tweet:
         self.num_responses = None
         self.num_quotes = None
         self.priority = None
+        self.done = None
+
+    def from_argument_list(self, _id, time, text, user_at_name, user_display_name, user_num_followers, user_is_verified, num_likes, num_retweets, num_responses, num_quotes, priority, done):
+        self.id = _id
+        self.time = time
+        self.text = text
+        self.user_at_name = user_at_name
+        self.user_display_name = user_display_name
+        self.user_num_followers = user_num_followers
+        self.user_is_verified = user_is_verified
+        self.num_likes = num_likes
+        self.num_retweets = num_retweets
+        self.num_responses = num_responses
+        self.num_quotes = num_quotes
+        self.priority = priority
+        self.done = done
+
 
     # for pretty printing
     def __str__(self):
@@ -28,6 +45,7 @@ class Tweet:
         s += "\n  responses:" + str(self.num_responses)
         s += "\n  quotes:   " + str(self.num_quotes)
         s += "\npriority:   " + str(self.priority)
+        s += "\ndone:       " + str(self.done)
         s += "\ncontent:"
         s += "\n" + self.text
         return s
