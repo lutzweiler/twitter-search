@@ -3,11 +3,12 @@ A tool to search and prioritize tweets by search term
 
 ## Installation
 1. install python 3 from <https://www.python.org/> or using a package manager
-2. install the dependencies following dependencies
+2. install the following dependencies
     - `jsonpickle`
     - `tweepy`
+    - `flask`
     
-        All dependencies can be installed by using pip: `pip install jsonpickle tweepy
+        All dependencies can be installed by using pip: `pip install -r requirements.txt`
 3. clone this repository
 
 ## Accessing the Twitter API
@@ -22,6 +23,18 @@ After account creation take the following steps:
 4. generate the bearer token and copy it to the configuration file
 
 ## How to Use
+
+### Running in command line mode
+If the program is run from the command line (i.e. `./main.py` or `python main.py`) the list of tweets will be updated and given new priorities.
+The result will be sent by email if enabled.
+
+### Running the flask server
+If the program is run in flask mode, the list of tweets will be updated and given new priorities.
+These tweets can be accessed using HTTPS requests and marked as **done** or **undone**. 
+For testing, the flask server can be run directly from the command line:
+- `export FLASK_APP=main`
+- `flask run`
+- go to `http://127.0.0.1:5000/tweets` in your web browser
 
 ### Configuration
 The settings for the application can be changed in the configuration file `src/config.json`
