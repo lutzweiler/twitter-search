@@ -26,6 +26,7 @@ SOFTWARE.
 class Tweet:
     def __init__(self):
         self.id = None
+        self.url = None
         self.time = None
         self.text = None
         self.user_at_name = None
@@ -53,12 +54,17 @@ class Tweet:
         self.num_quotes = num_quotes
         self.priority = priority
         self.done = done
+        self.determine_url()
+
+    def determine_url(self):
+        self.url = "https://twitter.com/user/status/" + str(self.id)
 
 
     # for pretty printing
     def __str__(self):
         s = ""
         s +=   "id:         " + str(self.id)
+        s +=   "url:        " + str(self.url)
         s += "\ntime:       " + str(self.time)
         s += "\nauthor:     " + self.user_display_name + " @" + self.user_at_name
         s += "\n  verified: " + str(self.user_is_verified)

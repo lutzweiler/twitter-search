@@ -115,6 +115,7 @@ class TwitterRequest:
                     new_tweet.num_responses = t.public_metrics['reply_count']
                     new_tweet.num_quotes = t.public_metrics['quote_count']
                     new_tweet.done = False
+                    new_tweet.determine_url()
                     self.result.append(new_tweet)
             else: 
                 print("an error has occured")

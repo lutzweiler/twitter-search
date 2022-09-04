@@ -52,6 +52,7 @@ def write_tweets_to_file():
     with open(config.csv_path, 'w') as f:
         writer = csv.writer(f, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
         writer.writerow(["id",
+            "url",
             "time",
             "text",
             "user_at_name",
