@@ -121,8 +121,13 @@ class TwitterRequest:
                 print("an error has occured")
                 print(errors)
 
-            next_token = meta['next_token']
-            tweet_count += len(data)
+            if 'next_token' in meta:
+                next_token = meta['next_token']
+                tweet_count += len(data)
+            else:
+                print("-no more results found")
+                break
+
             
             if tweet_count < self.properties.max_results:
                 print("-waiting", self.properties.request_delay, "seconds")

@@ -111,7 +111,8 @@ priority.calculate_priorities()
 priority.sort_by_priority()
 tweets = priority.get_tweet_list()
 
-print(len(tweets))
+write_tweets_to_file()
+
 # if run throught flask start the flask app
 if RUN_MODE == RUN_FLASK:
     app = Flask(__name__)
@@ -150,8 +151,6 @@ if RUN_MODE == RUN_FLASK:
 
 
 if RUN_MODE == RUN_COMMAND_LINE:
-    write_tweets_to_file()
-
     # send the csv file per email
     if config.send_email:
         properties = config.get_email_properties()
