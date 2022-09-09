@@ -66,7 +66,7 @@ Im Fokus stehen hier die Suche und Priorisierung als Kernfunktionalität, trotzd
 \section{Implementierung}
 \subsection{Twitter API}
 Um relevante Tweets abzufragen wurde die von Twitter zur Verfügung gestellte v2-API\footnote{\url{https://developer.twitter.com/en/docs/twitter-api/getting-started/about-twitter-api}} verwendet.
-Je nach \textit{Access Level} gelten unterschiedliche Einschränkungen.
+Je nach \textit{Access Level} gelten unterschiedliche Einschränkung-en.
 Das niedrigste Level, \textit{Essential Access} ist frei verfügbar, allerdings können pro Monat maximal 500.000 Tweets abgerufen werden.
 Außerdem sind nicht alle Endpoints der API verfügbar.
 Die geringsten Einschränkungen gelten für das \textit{Academic Research Level} das für akademische Projekte beantragt werden kann.
@@ -299,7 +299,7 @@ Anstelle wie oben beschrieben die Ergebnisse von einer exportierten Datei aus zu
 Das erstellen des Web-Frontends war nicht Teil des Projektes, allerdings sollte das entsprechende Backend implementiert werden.
 
 Für das Backend wurde das Python-Framework \textit{Flask} verwendet.
-Es ermöglicht es, auf HTTPS-Anfragen mittels annotierter Funktionen zu antworten.
+Es er-möglicht es, auf HTTPS-Anfragen mittels annotierter Funktionen zu antworten.
 Die verschiedenen Anfragen werden als \textit{Routes} bezeichnet.
 Es wurden vier solcher Routes implementiert:
 
@@ -336,7 +336,7 @@ Eine genauere Erklärung der jeweiligen Einstellungen findet sich in der mitgeli
 \section{Schlussfolgerung}
 Mit dem entwickelten Tool ist es möglich aktuelle relevante Tweets zu einem Suchbegriff zu finden.
 Die Qualität der Suchergebnisse ist in erster Linie durch die zur Verfügung stehenden Endpoints beschränkt.
-Durch unsere Priorisierung sind die Tweets, die einen hohen Prioritätswert erhalten haben, meistens tatsächlich relevant.
+Durch unsere Priorisierung sind die Tweets, die einen hohen Prioritätswert erhalten haben, meistens tat-sächlich relevant.
 Allerdings findet man auch weitere relevante Tweets, die von uns wenig priorisiert werden.
 
 Um eine bessere Bewertung der Ergebnisse zu ermöglichen, wäre es möglich, eine Liste von Tweets als relevant oder nicht relevant zu markieren, und diese durch unseren Algorithmus priorisieren zu lassen.
@@ -344,7 +344,7 @@ Anschließend könnte durch ein formales Kriterium entschieden werden, wie viel 
 Mit dieser Methode könnten auch die Gewichte, die zur Berechnung der Priorität verwendet werden, besser eingestellt werden.
 Dennoch kann eine rein statistische Herangehensweise nicht entscheiden, ob ein Tweet für das Thema Phishing relevant ist und ob in dem entsprechenden Kontext eine Antwort gerechtfertigt ist.
 
-Für unsere Priorisierung wurde der eigentliche Text des Tweets nicht berücksichtigt.
+Für unsere Priorisierung wurde der eigentliche Text des Tweets nicht berück-sichtigt.
 Mit einem anderen Algorithmus, der die Semantik des Textes beachtet, könnten möglicherweise relevante Tweets besser qualifiziert werden, wobei dieser Ansatz sicherlich weitaus komplexer ist.
 
 \paragraph{} Das Tool könnte auch durch weitere Funktionen ergänzt werden.
