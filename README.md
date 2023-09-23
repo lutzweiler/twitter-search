@@ -1,5 +1,5 @@
 # twitter-search
-A tool to search and prioritize tweets by search term
+A tool to search and prioritize tweets by search term. View the report [here](pdf/report/report.pdf).
 
 ## Getting started
 1. install python 3 from <https://www.python.org/> or using a package manager
